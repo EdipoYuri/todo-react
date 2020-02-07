@@ -62,7 +62,8 @@ li{
 
 .deleteButton{
   height: 30px;
-  margin-left: 20px;
+  margin-left: 10px;
+  margin-bottom: 10px;
   outline: none;
 
   border: none;
@@ -73,4 +74,8 @@ li{
 
 .deleteButton:hover{
   background-color: rgba(240, 248, 255, 0.904);
+}
+
+.editButton{
+  margin-right: 10px;
 }
