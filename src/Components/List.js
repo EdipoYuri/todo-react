@@ -1,6 +1,9 @@
 import React from 'react';
+import ActionButton from './Styled/ActionButton';
+import TaskItem from './Styled/TaskItem';
+import PropTypes from 'prop-types';
 
-function List({todoList, editIndex, onClickEdit, setList}){
+const List = ({todoList, editIndex, onClickEdit, setList}) => {
     const onClickConfirmRemove = (removeIndex) => {
         const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?");
         if(confirmRemove===true){
@@ -15,30 +18,36 @@ function List({todoList, editIndex, onClickEdit, setList}){
     }
 
     return(
-        <ul>
+        <ul className="task-list">
             <h1>Tasks</h1>
             {todoList.map((item, index) =>
-                <li key={index}>
+                <TaskItem key={index} >
                     {item}
-                    <button 
+                    <ActionButton 
                         name="delete" 
-                        className="deleteButton" 
                         onClick={() => onClickConfirmRemove(index)}
                     >
                         Delete
-                    </button>
-                    <button 
+                    </ActionButton>
+                    <ActionButton 
                         name="edit" 
-                        className="deleteButton editButton"
                         onClick={() => onClickEdit(index)}
+                        edit
                     >
                         Edit
-                    </button>
+                    </ActionButton>
                     {index === editIndex && editIndex >= 0 ? '| Editting...' : ''}
-                </li>
+                </TaskItem>
             )}
         </ul>
     )
+}
+
+List.propTypes = {
+    todoList: PropTypes.array.isRequired,
+    editIndex: PropTypes.number.isRequired,
+    onClickEdit: PropTypes.func.isRequired,
+    setList: PropTypes.func.isRequired
 }
 
 export default List;
