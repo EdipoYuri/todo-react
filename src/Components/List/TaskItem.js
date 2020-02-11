@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, {css} from 'styled-components'
 
 const TaskItem = styled.li`
     width: 85%;
@@ -6,6 +6,10 @@ const TaskItem = styled.li`
     margin-bottom: 10px;
     border-bottom: 1px solid #000;
     list-style-type: none;
+
+    ${props => props.isEditting && css`
+        color: darkcyan;
+    `}
 `
 
 export default TaskItem

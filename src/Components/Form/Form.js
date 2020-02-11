@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
-function Form({onSubmit, setItem, todoItem, editIndex}){
+const Form = ({onSubmit, setItem, todoItem, editIndex}) => {
     const onChangeUpdate = (event) => {
         setItem(event.target.value)
     }
@@ -16,13 +16,9 @@ function Form({onSubmit, setItem, todoItem, editIndex}){
                 value={todoItem}
             />
 
-            {todoItem !=='' ? (
-                <button className="addButton">
-                    {editIndex < 0 ? 'Add' : 'Save'}
-                </button>
-            ) : (
-                null
-            )}
+            <button className="addButton" disabled={!todoItem}>
+                {editIndex < 0 ? 'Add' : 'Save'}
+            </button>
         </form>
     )
 }

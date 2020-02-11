@@ -15,12 +15,13 @@ const ActionButton = styled.button`
     &:hover{
         background-color: crimson;
         color: white;
-        border: none;
+        border: 1px solid crimson;
     }
 
     ${props => props.edit && css`
         &:hover{
             background-color: darkcyan;
+            border: 1px solid darkcyan;
         }
     `}
 `

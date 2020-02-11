@@ -5,7 +5,7 @@ import './App.css'
 import About from './Pages/about'
 import Todo from './Pages/todo'
 
-function App() {
+const App = () => {
   return (
     <Router>
       <nav>

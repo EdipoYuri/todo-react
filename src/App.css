@@ -11,12 +11,12 @@
 .addTaskForm{
   width: 50%;
   height: 100px;
-  margin-top: 60px;
+  margin-top: 50px;
   margin-left: 25vw;
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .inputTask{
@@ -46,6 +46,7 @@
 .task-list{
   width: 50%;
   height: 75vh;
+  margin-top: 0;
   margin-left: 25vw;
   padding-top: 10px;
 

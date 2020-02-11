@@ -1,15 +1,12 @@
 import React from 'react'
-import ActionButton from '../Styles/ActionButton'
-import TaskItem from '../Styles/TaskItem'
+import ActionButton from './ActionButton'
+import TaskItem from './TaskItem'
 import PropTypes from 'prop-types'
 
 const List = ({todoList, editIndex, onClickEdit, setList}) => {
     const onClickConfirmRemove = (removeIndex) => {
         const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?")
-        if(confirmRemove===true){
-            onClickRemove(removeIndex)
-        }
-        //confirmRemove === true ? onClickRemove(removeIndex) : null
+        if(confirmRemove) onClickRemove(removeIndex)
     }
 
     const onClickRemove = (removeIndex) => {
@@ -17,11 +14,13 @@ const List = ({todoList, editIndex, onClickEdit, setList}) => {
         setList(newTodoList)
     }
 
+    const isEditting = (index) => index === editIndex && editIndex >= 0;
+
     return(
         <ul className="task-list">
             <h1>Tasks</h1>
             {todoList.map((item, index) =>
-                <TaskItem key={index} >
+                <TaskItem key={index} isEditting={isEditting(index)}>
                     {item}
                     <ActionButton 
                         name="delete" 
@@ -36,7 +35,7 @@ const List = ({todoList, editIndex, onClickEdit, setList}) => {
                     >
                         Edit
                     </ActionButton>
-                    {index === editIndex && editIndex >= 0 ? '| Editting...' : ''}
+                    {isEditting(index) ? '| Editting...' : ''}
                 </TaskItem>
             )}
         </ul>

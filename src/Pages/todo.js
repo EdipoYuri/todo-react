@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 
-import Form from '../Components/Form'
-import List from '../Components/List'
+import Form from '../Components/Form/Form'
+import List from '../Components/List/List'
 
-function Todo(){
+const Todo = () =>{
     const [todoItem, setTodoItem]=useState('')
     const [todoList, setTodoList]=useState([])
     const [editIndex, setIndex]=useState(-1)
@@ -12,9 +12,9 @@ function Todo(){
         event.preventDefault()
 
         editIndex < 0 ? (
-        setTodoList([...todoList, todoItem])
+            setTodoList([...todoList, todoItem])
         ) : (
-        saveTask()
+            saveTask()
         )
 
         setTodoItem('')
@@ -47,7 +47,6 @@ function Todo(){
                 setList={setTodoList}
             />
         </div>
-        
     )
 }
 
