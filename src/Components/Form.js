@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
 function Form({onSubmit, setItem, todoItem, editIndex}){
     const onChangeUpdate = (event) => {
-        setItem(event.target.value);
+        setItem(event.target.value)
     }
 
     return(
@@ -34,4 +34,4 @@ Form.propTypes = {
     editIndex: PropTypes.number.isRequired
 }
 
-export default Form;
+export default Form

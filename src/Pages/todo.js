@@ -1,15 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 
-import Form from '../Components/Form';
-import List from '../Components/List';
+import Form from '../Components/Form'
+import List from '../Components/List'
 
 function Todo(){
-    const [todoItem, setTodoItem]=useState('');
-    const [todoList, setTodoList]=useState([]);
-    const [editIndex, setIndex]=useState(-1);
+    const [todoItem, setTodoItem]=useState('')
+    const [todoList, setTodoList]=useState([])
+    const [editIndex, setIndex]=useState(-1)
 
     const onSubmit = (event) => {
-        event.preventDefault();
+        event.preventDefault()
 
         editIndex < 0 ? (
         setTodoList([...todoList, todoItem])
@@ -17,18 +17,18 @@ function Todo(){
         saveTask()
         )
 
-        setTodoItem('');
+        setTodoItem('')
     }
 
     const onClickEdit = (index) => {
-        setTodoItem(todoList[index]);
-        setIndex(index);
+        setTodoItem(todoList[index])
+        setIndex(index)
     }
 
     const saveTask = () => {
-        const newList = todoList.map((item, index) => index !== editIndex ? item : todoItem);
-        setTodoList(newList);
-        setIndex(-1);
+        const newList = todoList.map((item, index) => index !== editIndex ? item : todoItem)
+        setTodoList(newList)
+        setIndex(-1)
     } 
 
     return(
@@ -51,4 +51,4 @@ function Todo(){
     )
 }
 
-export default Todo;
+export default Todo

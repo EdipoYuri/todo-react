@@ -1,20 +1,20 @@
-import React from 'react';
-import ActionButton from './Styled/ActionButton';
-import TaskItem from './Styled/TaskItem';
-import PropTypes from 'prop-types';
+import React from 'react'
+import ActionButton from '../Styles/ActionButton'
+import TaskItem from '../Styles/TaskItem'
+import PropTypes from 'prop-types'
 
 const List = ({todoList, editIndex, onClickEdit, setList}) => {
     const onClickConfirmRemove = (removeIndex) => {
-        const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?");
+        const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?")
         if(confirmRemove===true){
-            onClickRemove(removeIndex);
+            onClickRemove(removeIndex)
         }
-        //confirmRemove === true ? onClickRemove(removeIndex) : null;
+        //confirmRemove === true ? onClickRemove(removeIndex) : null
     }
 
     const onClickRemove = (removeIndex) => {
-        const newTodoList = todoList.filter((item, index)=> index !== removeIndex);
-        setList(newTodoList);
+        const newTodoList = todoList.filter((item, index)=> index !== removeIndex)
+        setList(newTodoList)
     }
 
     return(
@@ -50,4 +50,4 @@ List.propTypes = {
     setList: PropTypes.func.isRequired
 }
 
-export default List;
+export default List

@@ -1,12 +1,11 @@
-import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import './App.css';
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import './App.css'
 
-import About from './Pages/About';
-import Todo from './Pages/Todo';
-//import Navbar from './Components/Navbar';
+import About from './Pages/about'
+import Todo from './Pages/todo'
 
-const App = () => {
+function App() {
   return (
     <Router>
       <nav>
@@ -29,4 +28,4 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
