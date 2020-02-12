@@ -35,7 +35,7 @@ const About = () => {
                         <p>Name : {item.name} | Type : {item.type}</p>
                         <p>Atk  : {item.atk} | Def  : {item.def} | Level: {item.level}</p>
                         <p>Image: </p>
-                        <img src={item.card_images[0].image_url} alt="Card image" />
+                        <img src={item.card_images[0].image_url} alt="Card" />
                     </li>
                 )}
             </ul>

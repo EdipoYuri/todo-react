@@ -4,6 +4,7 @@ import './App.css'
 
 import About from './Pages/about'
 import Todo from './Pages/todo'
+import Episodes from './Pages/rick-morty/rick-morty-ep'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Todo} />
           <Route path="/about" component={About} />
+          <Route path="/episodes" component={Episodes} />
         </Switch>
       </div>
     </Router>
