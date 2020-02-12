@@ -9,10 +9,13 @@ const Episodes = () => {
     }, [])
 
     const getEpisodes = async () => {
-        const response = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes')
-        const jsonData = await response.json()
-        setEpisodes(jsonData._embedded.episodes)
-        console.log(episodes)
+        try{
+            const response = await fetch('https://api.tvmaze.com/singlesearch/shows?q=rick-&-morty&embed=episodes')
+            const jsonData = await response.json()
+            setEpisodes(jsonData._embedded.episodes)
+        }catch(error){
+            console.log("Erro: ", error)
+        }
     }
 
     return (
