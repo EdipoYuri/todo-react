@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
-import Form from '../Components/Form/Form'
-import List from '../Components/List/List'
+import Form from '../components/add-form/add-form'
+import List from '../components/todo-list/todo-list'
 
 const Todo = () =>{
     const [todoItem, setTodoItem]=useState('')

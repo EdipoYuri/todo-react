@@ -2,9 +2,8 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 
-import About from './Pages/about'
-import Todo from './Pages/todo'
-import Episodes from './Pages/rick-morty/rick-morty-ep'
+import About from './pages/about'
+import Todo from './pages/todo'
 
 const App = () => {
   return (
@@ -23,7 +22,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Todo} />
           <Route path="/about" component={About} />
-          <Route path="/episodes" component={Episodes} />
         </Switch>
       </div>
     </Router>

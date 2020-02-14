@@ -1,6 +1,6 @@
 import React from 'react'
-import ActionButton from './ActionButton'
-import TaskItem from './TaskItem'
+import ActionButton from './add-remove-button'
+import TaskItem from './todo-item'
 import PropTypes from 'prop-types'
 
 const List = ({todoList, editIndex, onClickEdit, setList}) => {

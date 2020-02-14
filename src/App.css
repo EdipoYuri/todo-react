@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Lemonada&display=swap');
 
 #main-page{
-  background-image: url(./Images/bg.jpg);
+  background-image: url(./images/bg.jpg);
   width: 100%;
   height: 100vh;
   overflow: hidden;
