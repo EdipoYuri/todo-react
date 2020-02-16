@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types'
+import { useDispatch } from "react-redux";
 
 const Form = ({onSubmit, setItem, todoItem, editIndex}) => {
-    const onChangeUpdate = (event) => {
-        setItem(event.target.value)
+    const [todoText, setTodoText] = useState('')
+
+    const dispatch = useDispatch()
+
+    const addNewTodo = (event) => {
+        event.preventDefault()
+        dispatch({type: 'ADD_TODO', title: todoText})
+        setTodoText('')
     }
 
     return(
-        <form className="addTaskForm" onSubmit={onSubmit}>
+        <form className="addTaskForm" onSubmit={addNewTodo}>
             <input
                 type="text"
                 name="inputTask"
                 className="inputTask"
-                onChange={onChangeUpdate}
-                value={todoItem}
+                onChange={(e) => setTodoText(e.target.value)}
+                value={todoText}
             />
 
-            <button className="addButton" disabled={!todoItem}>
+            <button className="addButton" disabled={!todoText}>
                 {editIndex < 0 ? 'Add' : 'Save'}
             </button>
         </form>

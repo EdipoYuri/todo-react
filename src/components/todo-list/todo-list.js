@@ -3,7 +3,11 @@ import ActionButton from './add-remove-button'
 import TaskItem from './todo-item'
 import PropTypes from 'prop-types'
 
+import { useSelector } from "react-redux";
+
 const List = ({todoList, editIndex, onClickEdit, setList}) => {
+    const todos = useSelector(state => state.data)
+
     const onClickConfirmRemove = (removeIndex) => {
         const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?")
         if(confirmRemove) onClickRemove(removeIndex)
@@ -38,6 +42,10 @@ const List = ({todoList, editIndex, onClickEdit, setList}) => {
                     {isEditting(index) ? '| Editting...' : ''}
                 </TaskItem>
             )}
+
+            <ul>
+            {todos.map((todo,index) => <li key={index}>{todo}</li>)}
+            </ul>
         </ul>
     )
 }
