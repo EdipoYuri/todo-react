@@ -1,14 +1,13 @@
 import { createStore } from "redux"
 
-const INITIAL_STATE = {
-    data: [
-    ]
-}
-
-function todos(state = INITIAL_STATE, action){
+function todos(state = [], action){
     switch(action.type){
         case 'ADD_TODO':
-            return {...state, data: [...state.data, action.title]}
+            return [...state, action.title]
+        case 'REMOVE_TODO':
+            return state.filter((item,index) => index !== action.index)
+        case 'EDIT_TODO':
+            return state.map((item, index) => index !== action.index ? item : action.title)
         default:
             return state
     }

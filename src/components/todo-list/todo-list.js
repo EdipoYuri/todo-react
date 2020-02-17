@@ -3,10 +3,11 @@ import ActionButton from './add-remove-button'
 import TaskItem from './todo-item'
 import PropTypes from 'prop-types'
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-const List = ({todoList, editIndex, onClickEdit, setList}) => {
-    const todos = useSelector(state => state.data)
+const List = ({ editIndex, setIndex, setTodoText }) => {
+    const todos = useSelector(state => state)
+    const dispatch = useDispatch()
 
     const onClickConfirmRemove = (removeIndex) => {
         const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?")
@@ -14,16 +15,22 @@ const List = ({todoList, editIndex, onClickEdit, setList}) => {
     }
 
     const onClickRemove = (removeIndex) => {
-        const newTodoList = todoList.filter((item, index)=> index !== removeIndex)
-        setList(newTodoList)
+        const newTodoList = todos.filter((item, index) => index !== removeIndex)
+        dispatch({type: 'REMOVE_TODO', data: newTodoList, index: removeIndex})
     }
 
     const isEditting = (index) => index === editIndex && editIndex >= 0;
 
+    const onClick = (index) => {
+        const text = todos
+        setIndex(index)
+        setTodoText(text[index])
+    }
+
     return(
         <ul className="task-list">
             <h1>Tasks</h1>
-            {todoList.map((item, index) =>
+            {todos.map((item, index) =>
                 <TaskItem key={index} isEditting={isEditting(index)}>
                     {item}
                     <ActionButton 
@@ -34,7 +41,7 @@ const List = ({todoList, editIndex, onClickEdit, setList}) => {
                     </ActionButton>
                     <ActionButton 
                         name="edit" 
-                        onClick={() => onClickEdit(index)}
+                        onClick={() => onClick(index)}
                         edit
                     >
                         Edit
@@ -42,19 +49,14 @@ const List = ({todoList, editIndex, onClickEdit, setList}) => {
                     {isEditting(index) ? '| Editting...' : ''}
                 </TaskItem>
             )}
-
-            <ul>
-            {todos.map((todo,index) => <li key={index}>{todo}</li>)}
-            </ul>
         </ul>
     )
 }
 
 List.propTypes = {
-    todoList: PropTypes.array.isRequired,
     editIndex: PropTypes.number.isRequired,
-    onClickEdit: PropTypes.func.isRequired,
-    setList: PropTypes.func.isRequired
+    setIndex: PropTypes.func.isRequired,
+    setTodoText: PropTypes.func.isRequired
 }
 
 export default List

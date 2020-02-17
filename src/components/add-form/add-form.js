@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import { useDispatch } from "react-redux";
 
-const Form = ({onSubmit, setItem, todoItem, editIndex}) => {
-    const [todoText, setTodoText] = useState('')
-
+const Form = ({editIndex, setIndex, todoText, setTodoText}) => {
     const dispatch = useDispatch()
 
-    const addNewTodo = (event) => {
+    const onSubmit = (event) => {
         event.preventDefault()
-        dispatch({type: 'ADD_TODO', title: todoText})
+
+        editIndex < 0 ? (
+            dispatch({type: 'ADD_TODO', title: todoText})
+        ) : (
+            dispatch({type: 'EDIT_TODO', title: todoText, index: editIndex})
+        )
+        setIndex(-1)
         setTodoText('')
     }
 
     return(
-        <form className="addTaskForm" onSubmit={addNewTodo}>
+        <form className="addTaskForm" onSubmit={onSubmit}>
             <input
                 type="text"
                 name="inputTask"
@@ -31,10 +35,10 @@ const Form = ({onSubmit, setItem, todoItem, editIndex}) => {
 }
 
 Form.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    setItem: PropTypes.func.isRequired,
-    todoItem: PropTypes.string.isRequired,
-    editIndex: PropTypes.number.isRequired
+    editIndex: PropTypes.number.isRequired,
+    setIndex: PropTypes.func.isRequired,
+    todoText: PropTypes.string.isRequired,
+    setTodoText: PropTypes.func.isRequired
 }
 
 export default Form

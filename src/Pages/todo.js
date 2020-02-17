@@ -4,47 +4,22 @@ import Form from '../components/add-form/add-form'
 import List from '../components/todo-list/todo-list'
 
 const Todo = () =>{
-    const [todoItem, setTodoItem]=useState('')
-    const [todoList, setTodoList]=useState([])
-    const [editIndex, setIndex]=useState(-1)
-
-    const onSubmit = (event) => {
-        event.preventDefault()
-
-        editIndex < 0 ? (
-            setTodoList([...todoList, todoItem])
-        ) : (
-            saveTask()
-        )
-
-        setTodoItem('')
-    }
-
-    const onClickEdit = (index) => {
-        setTodoItem(todoList[index])
-        setIndex(index)
-    }
-
-    const saveTask = () => {
-        const newList = todoList.map((item, index) => index !== editIndex ? item : todoItem)
-        setTodoList(newList)
-        setIndex(-1)
-    } 
+    const [editIndex, setIndex] = useState(-1)
+    const [todoText, setTodoText] = useState('')
 
     return(
         <div>
-            <Form 
-                onSubmit={onSubmit}
-                setItem={setTodoItem}
-                todoItem={todoItem}
+            <Form
                 editIndex={editIndex}
+                setIndex={setIndex}
+                todoText={todoText}
+                setTodoText={setTodoText}
             />
 
             <List 
-                todoList={todoList}
                 editIndex={editIndex}
-                onClickEdit={onClickEdit}
-                setList={setTodoList}
+                setIndex={setIndex}
+                setTodoText={setTodoText}
             />
         </div>
     )
