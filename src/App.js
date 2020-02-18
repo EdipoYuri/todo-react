@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 
 import { Provider } from "react-redux";
-import store from './store'
+import store from './store/store'
 
 import About from './pages/about'
 import Todo from './pages/todo'

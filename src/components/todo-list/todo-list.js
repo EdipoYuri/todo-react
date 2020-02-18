@@ -1,9 +1,9 @@
 import React from 'react'
-import ActionButton from './add-remove-button'
-import TaskItem from './todo-item'
+import * as Styles from './styles'
 import PropTypes from 'prop-types'
-
 import { useSelector, useDispatch } from "react-redux";
+
+import { IS_EDITING_TODO } from "../../utils/constants";
 
 const List = ({ editIndex, setIndex, setTodoText }) => {
     const todos = useSelector(state => state)
@@ -16,38 +16,59 @@ const List = ({ editIndex, setIndex, setTodoText }) => {
 
     const onClickRemove = (removeIndex) => {
         const newTodoList = todos.filter((item, index) => index !== removeIndex)
-        dispatch({type: 'REMOVE_TODO', data: newTodoList, index: removeIndex})
+        dispatch({
+            type: 'REMOVE_TODO',
+            data: newTodoList, 
+            index: removeIndex
+        })
     }
 
-    const isEditting = (index) => index === editIndex && editIndex >= 0;
+    const isEditing = (index) => {
+        return index === editIndex && editIndex >= IS_EDITING_TODO
+    }
 
-    const onClick = (index) => {
+    const onClickEdit = (index) => {
         const text = todos
         setIndex(index)
-        setTodoText(text[index])
+        setTodoText(text[index].text)
+    }
+
+    const handleCheckboxChange = (index) => {
+        dispatch({type: 'COMPLETE_TODO', index})
     }
 
     return(
         <ul className="task-list">
             <h1>Tasks</h1>
             {todos.map((item, index) =>
-                <TaskItem key={index} isEditting={isEditting(index)}>
-                    {item}
-                    <ActionButton 
+                <Styles.TaskItem key={index} isEditting={() => isEditing(index)}>
+
+                    <Styles.CheckItem 
+                        type="checkbox" 
+                        onChange={() => handleCheckboxChange(index)} 
+                    />
+
+                    <Styles.TodoItem isComplete={item.completed}>
+                        {item.text}
+                    </Styles.TodoItem>
+
+                    <Styles.ActionButton 
                         name="delete" 
                         onClick={() => onClickConfirmRemove(index)}
                     >
                         Delete
-                    </ActionButton>
-                    <ActionButton 
+                    </Styles.ActionButton>
+
+                    <Styles.ActionButton 
                         name="edit" 
-                        onClick={() => onClick(index)}
+                        onClick={() => onClickEdit(index)}
                         edit
                     >
                         Edit
-                    </ActionButton>
-                    {isEditting(index) ? '| Editting...' : ''}
-                </TaskItem>
+                    </Styles.ActionButton>
+
+                    {() => isEditing(index) ? '| Editting...' : ''}
+                </Styles.TaskItem>
             )}
         </ul>
     )

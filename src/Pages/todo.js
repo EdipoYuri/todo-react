@@ -3,9 +3,24 @@ import React, {useState} from 'react'
 import Form from '../components/add-form/add-form'
 import List from '../components/todo-list/todo-list'
 
+import { IS_ADDING_TODO } from "../utils/constants";
+
 const Todo = () =>{
-    const [editIndex, setIndex] = useState(-1)
+    const [editIndex, setEditIndex] = useState(IS_ADDING_TODO)
     const [todoText, setTodoText] = useState('')
+
+    /*
+    useEffect()
+    memo()
+    FEITO - limpar o código; deixar no padrão do style guide
+    FEITO - numeros mágicos
+    excluir todos os to-do's
+    adicionar typescript no projeto
+    */
+
+   const setIndex = (index) => {
+        setEditIndex(index)
+   }
 
     return(
         <div>
