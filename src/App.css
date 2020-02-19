@@ -1,11 +1,17 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:700&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Lemonada&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+*{
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
 
 #main-page{
-  background-image: url(./images/bg.jpg);
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  background: rgb(148,52,182);
+  background: linear-gradient(90deg, rgba(148,52,182,1) 0%, rgba(134,16,201,1) 100%);
 }
 
 .addTaskForm{
@@ -43,20 +49,6 @@
   background-color: rgba(240, 248, 255, 0.904);
 }
 
-.task-list{
-  width: 50%;
-  height: 75vh;
-  margin-top: 0;
-  margin-left: 25vw;
-  padding-top: 10px;
-
-  border-radius: 15px;
-
-  background-color: aliceblue;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  font-family: 'Lemonada', cursive;
-}
-
 nav{
   top: 0; margin: 0; padding: 0;
   position: fixed;
@@ -78,7 +70,6 @@ nav{
 .nav-item a{
   padding: 0 20px 10px;
   height: 30px;
-  font-family: 'Roboto Mono', monospace;
   color: aliceblue;
   text-decoration: none;
 }

@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 
 import Form from '../components/add-form/add-form'
 import List from '../components/todo-list/todo-list'
-
 import { IS_ADDING_TODO } from "../utils/constants";
 
 const Todo = () =>{
@@ -14,13 +13,13 @@ const Todo = () =>{
     memo()
     FEITO - limpar o código; deixar no padrão do style guide
     FEITO - numeros mágicos
-    excluir todos os to-do's
+    FEITO - excluir todos os to-do's
     adicionar typescript no projeto
     */
 
-   const setIndex = (index) => {
+    const setIndex = (index) => {
         setEditIndex(index)
-   }
+    }
 
     return(
         <div>
@@ -30,7 +29,6 @@ const Todo = () =>{
                 todoText={todoText}
                 setTodoText={setTodoText}
             />
-
             <List 
                 editIndex={editIndex}
                 setIndex={setIndex}

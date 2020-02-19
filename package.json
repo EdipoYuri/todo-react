@@ -17,7 +17,8 @@
     "redux": "^4.0.5",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.88.2",
-    "styled-components": "^5.0.1"
+    "styled-components": "^5.0.1",
+    "styled-icons": "^9.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,9 +1,10 @@
 import React from 'react'
-import * as Styles from './styles'
+import * as S from './styles'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from "react-redux";
 
 import { IS_EDITING_TODO } from "../../utils/constants";
+import TodoHeader from './todo-header'
 
 const List = ({ editIndex, setIndex, setTodoText }) => {
     const todos = useSelector(state => state)
@@ -23,9 +24,7 @@ const List = ({ editIndex, setIndex, setTodoText }) => {
         })
     }
 
-    const isEditing = (index) => {
-        return index === editIndex && editIndex >= IS_EDITING_TODO
-    }
+    const isEditing = (index) => index === editIndex && editIndex >= IS_EDITING_TODO
 
     const onClickEdit = (index) => {
         const text = todos
@@ -37,40 +36,51 @@ const List = ({ editIndex, setIndex, setTodoText }) => {
         dispatch({type: 'COMPLETE_TODO', index})
     }
 
-    return(
-        <ul className="task-list">
-            <h1>Tasks</h1>
-            {todos.map((item, index) =>
-                <Styles.TaskItem key={index} isEditting={() => isEditing(index)}>
+    const onClickClearAll = () => {
+        dispatch({type: 'CLEAR_ALL'})
+    }
 
-                    <Styles.CheckItem 
+    return(
+        <S.TodoList>
+            <TodoHeader />
+            {todos.map((item, index) =>
+                <S.TodoItem key={index} isEditing={isEditing(index)}>
+
+                    <S.CheckItem 
                         type="checkbox" 
                         onChange={() => handleCheckboxChange(index)} 
                     />
 
-                    <Styles.TodoItem isComplete={item.completed}>
+                    <S.TodoText isComplete={item.completed}>
                         {item.text}
-                    </Styles.TodoItem>
+                    </S.TodoText>
 
-                    <Styles.ActionButton 
+                    <S.ActionButton 
                         name="delete" 
                         onClick={() => onClickConfirmRemove(index)}
                     >
-                        Delete
-                    </Styles.ActionButton>
+                        <S.TrashItem />
+                    </S.ActionButton>
 
-                    <Styles.ActionButton 
+                    <S.ActionButton 
                         name="edit" 
                         onClick={() => onClickEdit(index)}
                         edit
                     >
-                        Edit
-                    </Styles.ActionButton>
+                        <S.EditPencil />
+                    </S.ActionButton>
 
-                    {() => isEditing(index) ? '| Editting...' : ''}
-                </Styles.TaskItem>
+                    {isEditing(index) ? '| Editting...' : ''}
+                </S.TodoItem>
             )}
-        </ul>
+            {todos.length !== 0 ? (
+                <S.ClearAllBtn onClick={onClickClearAll}>
+                    <S.TrashAll />
+                </S.ClearAllBtn>
+            ) : (
+                null
+            )}  
+        </S.TodoList>
     )
 }
 

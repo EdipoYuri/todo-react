@@ -1,44 +1,90 @@
 import styled, {css} from 'styled-components'
+import {TrashAlt} from 'styled-icons/boxicons-solid/TrashAlt'
+import {Trash} from 'styled-icons/boxicons-regular/Trash'
+import {Pencil} from 'styled-icons/boxicons-regular/Pencil'
+
+// Ícones da lista de To-Do
+
+export const TrashAll = styled(TrashAlt)`
+    color: white;
+`
+export const TrashItem = styled(Trash)`
+    color: white;
+`
+export const EditPencil = styled(Pencil)`
+    color: white;
+`
 
 export const ActionButton = styled.button`
-    height: 30px;
+    width: 35px;
+    height: 35px;
     float: right;
     margin-right: 20px;
     margin-bottom: 10px;
+    
     outline: none;
+    border: none;
+    border-radius: 20px;
 
-    border: 1px solid #000;
-    border-radius: 15px;
-    background-color: aliceblue;
-    font-family: 'Roboto Mono', monospace;
+    background-color: #ff1100;
 
     &:hover{
         background-color: crimson;
-        color: white;
-        border: 1px solid crimson;
     }
 
     ${props => props.edit && css`
+        background-color: #00a62c;
+
         &:hover{
-            background-color: darkcyan;
-            border: 1px solid darkcyan;
+            background-color: #01701f;
         }
     `}
 `
 
-export const TaskItem = styled.li`
+export const ClearAllBtn = styled.button`
+    width: 40px;
+    height: 40px;
+    outline:none;
+
+    border-radius: 20px;
+    border:none;
+    background-color:#ff1100;
+
+    &:hover{
+        background-color: #cf0e00;
+    }
+`
+
+export const TodoList = styled.ul`
+    width: 40%;
+    height: 70vh;
+    margin-top: 0;
+    margin-left: 25vw;
+    padding-top: 10px;
+  
+    border-radius: 15px;
+  
+    background-color: aliceblue;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    font-family: 'Lemonada', cursive;
+
+    &:first-child{
+        color:purple;
+    }
+`
+
+export const TodoItem = styled.li`
     width: 85%;
     margin-left: 20px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #000;
+    margin-top: 10px;
     list-style-type: none;
 
-    ${props => props.isEditting && css`
+    ${props => props.isEditing && css`
         color: darkcyan;
     `}
 `
 
-export const TodoItem = styled.span`
+export const TodoText = styled.span`
     ${props => props.isComplete && css`
         text-decoration: line-through;
         color: green;

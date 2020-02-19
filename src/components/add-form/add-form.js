@@ -6,11 +6,11 @@ import { IS_ADDING_TODO } from '../../utils/constants'
 
 const Form = ({editIndex, setIndex, todoText, setTodoText}) => {
     const dispatch = useDispatch()
-    console.log(editIndex, setIndex)
+    
     const onSubmit = (event) => {
         event.preventDefault()
-
         if (editIndex === IS_ADDING_TODO){
+          
             dispatch({type: 'ADD_TODO', title: todoText})
         } else {
             dispatch({
@@ -25,7 +25,7 @@ const Form = ({editIndex, setIndex, todoText, setTodoText}) => {
     }
 
     return(
-        <form className="addTaskForm" onSubmit={() => onSubmit}>
+        <form className="addTaskForm" onSubmit={onSubmit}>
             <input
                 type="text"
                 name="inputTask"

@@ -15,10 +15,10 @@ const App = () => {
         <nav>
             <ul className="nav-list">
                 <li className="nav-item">
-                    <Link to="/">To-do</Link>
+                    <Link to="/">Tarefas</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="/about">About</Link>
+                    <Link to="/about">Sobre</Link>
                 </li>
             </ul>
         </nav>
