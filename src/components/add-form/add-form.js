@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux';
+import * as S from './styles'
 
 import { IS_ADDING_TODO } from '../../utils/constants'
 
@@ -25,22 +26,21 @@ const Form = ({editIndex, setIndex, todoText, setTodoText}) => {
     }
 
     return(
-        <form className="addTaskForm" onSubmit={onSubmit}>
-            <input
+        <S.TodoForm onSubmit={onSubmit}>
+            <S.InputText
                 type="text"
                 name="inputTask"
-                className="inputTask"
                 onChange={(e) => setTodoText(e.target.value)}
                 value={todoText}
             />
 
-            <button className="addButton" disabled={!todoText}>
+            <S.AddButton disabled={!todoText}>
                 {(editIndex < 0) 
-                    ? 'Add' 
-                    : 'Save'
+                    ? <S.PlusIcon />
+                    : <S.SaveIcon />
                 }
-            </button>
-        </form>
+            </S.AddButton>
+        </S.TodoForm>
     )
 }
 

@@ -58,9 +58,10 @@ export const ClearAllBtn = styled.button`
 export const TodoList = styled.ul`
     width: 40%;
     height: 70vh;
-    margin-top: 0;
+    margin-top: 60px;
     margin-left: 25vw;
     padding-top: 10px;
+    position: relative;
   
     border-radius: 15px;
   

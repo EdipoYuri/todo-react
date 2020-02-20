@@ -1,14 +1,22 @@
-import React from 'react'
+import React, {useState} from 'react'
 import * as S from './styles'
 import PropTypes from 'prop-types'
 import { useSelector, useDispatch } from "react-redux";
 
-import { IS_EDITING_TODO } from "../../utils/constants";
+import { IS_EDITING_TODO, IS_ADDING_TODO } from "../../utils/constants";
 import TodoHeader from './todo-header'
+import InputForm from '../add-form/add-form'
 
-const List = ({ editIndex, setIndex, setTodoText }) => {
+const List = () => {
+    const [editIndex, setEditIndex] = useState(IS_ADDING_TODO)
+    const [todoText, setTodoText] = useState('')
+
     const todos = useSelector(state => state)
     const dispatch = useDispatch()
+
+    const setIndex = (index) => {
+        setEditIndex(index)
+    }
 
     const onClickConfirmRemove = (removeIndex) => {
         const confirmRemove = window.confirm("Deseja realmente apagar essa tarefa?")
@@ -28,7 +36,7 @@ const List = ({ editIndex, setIndex, setTodoText }) => {
 
     const onClickEdit = (index) => {
         const text = todos
-        setIndex(index)
+        setEditIndex(index)
         setTodoText(text[index].text)
     }
 
@@ -41,53 +49,58 @@ const List = ({ editIndex, setIndex, setTodoText }) => {
     }
 
     return(
-        <S.TodoList>
-            <TodoHeader />
-            {todos.map((item, index) =>
-                <S.TodoItem key={index} isEditing={isEditing(index)}>
+        <>
+            <S.TodoList>
+                <TodoHeader />
+                {todos.map((item, index) =>
+                    <S.TodoItem key={index} isEditing={isEditing(index)}>
 
-                    <S.CheckItem 
-                        type="checkbox" 
-                        onChange={() => handleCheckboxChange(index)} 
-                    />
+                        <S.CheckItem 
+                            type="checkbox" 
+                            onChange={() => handleCheckboxChange(index)} 
+                        />
 
-                    <S.TodoText isComplete={item.completed}>
-                        {item.text}
-                    </S.TodoText>
+                        <S.TodoText isComplete={item.completed}>
+                            {item.text}
+                        </S.TodoText>
 
-                    <S.ActionButton 
-                        name="delete" 
-                        onClick={() => onClickConfirmRemove(index)}
-                    >
-                        <S.TrashItem />
-                    </S.ActionButton>
+                        <S.ActionButton 
+                            name="delete" 
+                            onClick={() => onClickConfirmRemove(index)}
+                        >
+                            <S.TrashItem />
+                        </S.ActionButton>
 
-                    <S.ActionButton 
-                        name="edit" 
-                        onClick={() => onClickEdit(index)}
-                        edit
-                    >
-                        <S.EditPencil />
-                    </S.ActionButton>
+                        <S.ActionButton 
+                            name="edit" 
+                            onClick={() => onClickEdit(index)}
+                            edit
+                        >
+                            <S.EditPencil />
+                        </S.ActionButton>
 
-                    {isEditing(index) ? '| Editting...' : ''}
-                </S.TodoItem>
-            )}
-            {todos.length !== 0 ? (
-                <S.ClearAllBtn onClick={onClickClearAll}>
-                    <S.TrashAll />
-                </S.ClearAllBtn>
-            ) : (
-                null
-            )}  
-        </S.TodoList>
+                        {isEditing(index) ? '| Editting...' : ''}
+                    </S.TodoItem>
+                )}
+                {todos.length !== 0 ? (
+                    <S.ClearAllBtn onClick={onClickClearAll}>
+                        <S.TrashAll />
+                    </S.ClearAllBtn>
+                ) : (
+                    null
+                )}  
+
+                <InputForm
+                    editIndex={editIndex}
+                    setIndex={setIndex}
+                    todoText={todoText}
+                    setTodoText={setTodoText}
+                />
+            </S.TodoList>
+
+            
+        </>
     )
-}
-
-List.propTypes = {
-    editIndex: PropTypes.number.isRequired,
-    setIndex: PropTypes.func.isRequired,
-    setTodoText: PropTypes.func.isRequired
 }
 
 export default List
