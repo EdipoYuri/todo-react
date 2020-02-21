@@ -26,21 +26,24 @@ const Form = ({editIndex, setIndex, todoText, setTodoText}) => {
     }
 
     return(
-        <S.TodoForm onSubmit={onSubmit}>
-            <S.InputText
-                type="text"
-                name="inputTask"
-                onChange={(e) => setTodoText(e.target.value)}
-                value={todoText}
-            />
-
-            <S.AddButton disabled={!todoText}>
-                {(editIndex < 0) 
-                    ? <S.PlusIcon />
-                    : <S.SaveIcon />
-                }
-            </S.AddButton>
-        </S.TodoForm>
+        <>
+            <S.TodoForm>
+                <S.InputText
+                    type="text"
+                    name="inputTask"
+                    onChange={(e) => setTodoText(e.target.value)}
+                    value={todoText}
+                />                
+            </S.TodoForm>
+            <S.TodoForm>
+                <S.AddButton disabled={!todoText} onClick={onSubmit}>
+                    {(editIndex < 0) 
+                        ? <S.PlusIcon />
+                        : <S.SaveIcon />
+                    }
+                </S.AddButton>
+            </S.TodoForm>
+        </>
     )
 }
 

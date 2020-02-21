@@ -1,4 +1,4 @@
-import styled, {css} from 'styled-components'
+import styled from 'styled-components'
 import {PlusMedical} from 'styled-icons/boxicons-regular/PlusMedical'
 import {Save} from 'styled-icons/material/Save'
 
@@ -11,10 +11,11 @@ export const SaveIcon = styled(Save)`
 `
 
 export const TodoForm = styled.form`
-    width: 100%;
     position: absolute;
+    width: 100%;
     bottom: 0; left: 0;
     margin-bottom: 60px;
+    
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +38,7 @@ export const AddButton = styled.button`
     width: 70px;
     height: 70px;
     position: fixed;
-    margin-top: 75px;
+    margin-top: 60px;
     outline: none;
   
     border: none;
@@ -45,6 +46,6 @@ export const AddButton = styled.button`
     background-color: #5b1773;
 
     &:hover{
-        background-color: rgba(240, 248, 255, 0.904);
+        background-color: #32a852;
     }
 `

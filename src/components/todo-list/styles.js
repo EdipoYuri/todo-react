@@ -41,6 +41,13 @@ export const ActionButton = styled.button`
     `}
 `
 
+export const ClearAll = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
 export const ClearAllBtn = styled.button`
     width: 40px;
     height: 40px;
@@ -77,7 +84,7 @@ export const TodoList = styled.ul`
 export const TodoItem = styled.li`
     width: 85%;
     margin-left: 20px;
-    margin-top: 10px;
+    margin-top: 20px;
     list-style-type: none;
 
     ${props => props.isEditing && css`
@@ -93,5 +100,4 @@ export const TodoText = styled.span`
 `
 
 export const CheckItem = styled.input`
-
 `
