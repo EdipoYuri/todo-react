@@ -5,8 +5,8 @@ import './App.css'
 import { Provider } from "react-redux";
 import store from './store/store'
 
-import About from './pages/about'
-import Todo from './pages/todo'
+import About from './Pages/about'
+import Todo from './Pages/todo'
 
 const App = () => {
   return (
