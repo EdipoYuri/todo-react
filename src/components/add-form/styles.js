@@ -26,7 +26,6 @@ export const InputText = styled.input`
     width: 80%;
     height: 30px;
     outline: none;
-    padding-left: 15px;
     text-align: center;
     border: none;
     border-bottom: 3px solid #5b1773;

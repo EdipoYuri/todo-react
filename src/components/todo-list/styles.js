@@ -16,8 +16,8 @@ export const EditPencil = styled(Pencil)`
 `
 
 export const ActionButton = styled.button`
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     float: right;
     margin-right: 20px;
     margin-bottom: 10px;
@@ -53,6 +53,7 @@ export const ClearAllBtn = styled.button`
     height: 40px;
     outline:none;
 
+    margin-left: -40px;
     border-radius: 20px;
     border:none;
     background-color:#ff1100;
